@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1042373550213",
+    "project_id": "fleet-focus-pro",
+    "storage_bucket": "fleet-focus-pro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042373550213:android:43a50d810f926697e389ec",
+        "android_client_info": {
+          "package_name": "com.fleet_focus_pro.ffp.fleet_focus_pro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4ea66U3ZIbCMqMp6ige0fUuccx_WhIt8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

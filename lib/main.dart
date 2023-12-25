@@ -56,6 +56,7 @@ void main() async {
     sound: true,
   );
 
+
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(
     ResponsiveSizer(
