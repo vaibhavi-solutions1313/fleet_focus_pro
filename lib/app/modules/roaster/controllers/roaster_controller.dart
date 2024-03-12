@@ -1,12 +1,15 @@
+import 'package:fleet_focus_pro/app/modules/driver/model/driver_list_item_model.dart';
+import 'package:fleet_focus_pro/app/modules/roaster/model/roaster_info_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../../constant.dart';
 import '../../../../helpers/api_helper.dart';
 import '../../../../models/send_roaster_model.dart';
+import '../../driver/controllers/driver_controller.dart';
 
 class RoasterController extends GetxController {
-  var roasterInfo = [].obs;
+  var roasterInfo = <RoasterInfoModel>[].obs;
   var vehicleList = [].obs;
   var regoList = [].obs;
   var selectedDriver = {}.obs;
@@ -40,7 +43,22 @@ class RoasterController extends GetxController {
     networkHelper.setAuthorizationToken(box.read(StorageKeys.bearerToken));
     return await networkHelper.fetchData(Endpoints.getRoasters).then((value) {
       if (value.statusCode == 200) {
-        roasterInfo.value = value.data['data'];
+        // roasterInfo.value = value.data['data'];
+        for(var data in value.data['data']){
+          var driverList = Get.find<DriverController>().driverList;
+
+          RoasterInfoModel roasterInfoModel = RoasterInfoModel.fromJson(data);
+
+          for(var driverItemModel in driverList){
+            DriverItemModel currentDriver = DriverItemModel.fromJson(driverItemModel);
+            if(roasterInfoModel.driverId != null && currentDriver.id !=null && roasterInfoModel.driverId == currentDriver.id){
+              roasterInfoModel.driverName = currentDriver.userName;
+              break;
+            }
+          }
+
+          roasterInfo.add(roasterInfoModel);
+        }
       }
       return value;
     }).onError((error, stackTrace) {
@@ -73,7 +91,7 @@ class RoasterController extends GetxController {
   }
 
   void filterRoasterByDriverId() {
-    filteredRoasters.value = roasterInfo.where((p0) => p0['user_id'] == selectedDriver['id']).toList();
+    // filteredRoasters.value = roasterInfo.where((p0) => p0['user_id'] == selectedDriver['user_id']).toList();
   }
 
   Future<ApiResponse<dynamic>> setRoaster() async {

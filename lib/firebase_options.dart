@@ -45,7 +45,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyAeczaBvXG5HXCvWo6btAxsRn5o-mQYRe8',
-    appId: '1:1042373550213:web:8041d6cd415f5750e389ec',
+    appId: '1:1042373550213:web:f27b7dcff35768eee389ec',
     messagingSenderId: '1042373550213',
     projectId: 'fleet-focus-pro',
     authDomain: 'fleet-focus-pro.firebaseapp.com',
@@ -54,7 +54,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyB4ea66U3ZIbCMqMp6ige0fUuccx_WhIt8',
-    appId: '1:1042373550213:android:43a50d810f926697e389ec',
+    appId: '1:1042373550213:android:648f403a6f25b468e389ec',
     messagingSenderId: '1042373550213',
     projectId: 'fleet-focus-pro',
     storageBucket: 'fleet-focus-pro.appspot.com',
@@ -62,19 +62,19 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBMxmXIVSPe-a0kctdXuKX5E7oFWX455HQ',
-    appId: '1:1042373550213:ios:8faccde27101799fe389ec',
+    appId: '1:1042373550213:ios:16f5ec6212a360d1e389ec',
     messagingSenderId: '1042373550213',
     projectId: 'fleet-focus-pro',
     storageBucket: 'fleet-focus-pro.appspot.com',
-    iosBundleId: 'com.fleetfocuspro.ffp.fleetFocusPro',
+    iosBundleId: 'com.app.fleetfocuspro',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyBMxmXIVSPe-a0kctdXuKX5E7oFWX455HQ',
-    appId: '1:1042373550213:ios:ef495d320671c51fe389ec',
+    appId: '1:1042373550213:ios:1d1548d85bd56f22e389ec',
     messagingSenderId: '1042373550213',
     projectId: 'fleet-focus-pro',
     storageBucket: 'fleet-focus-pro.appspot.com',
-    iosBundleId: 'com.fleetfocuspro.ffp.fleetFocusPro.RunnerTests',
+    iosBundleId: 'com.app.fleetfocuspro.RunnerTests',
   );
 }

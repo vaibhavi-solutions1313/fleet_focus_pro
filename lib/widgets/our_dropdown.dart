@@ -38,10 +38,10 @@ class _OurListObjectDropDownState extends State<OurListObjectDropDown> {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 8.sp),
       decoration: BoxDecoration(
-        // color: Colors.grey.shade100,
-        color: AppColors.textFilledColor,
+        color: Colors.white,
+        // color: AppColors.textFilledColor,
         borderRadius: BorderRadius.circular(12.sp),
-        // border: Border.all(color: Colors.black26,width: 1.3)
+        border: Border.all(color: AppColors.textAndOutlineBottom,width: 1.0)
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 18.0.sp),
@@ -51,7 +51,8 @@ class _OurListObjectDropDownState extends State<OurListObjectDropDown> {
             DropdownButton<dynamic>(
               hint: Text(
                 widget.hintText,
-                style: GoogleFonts.urbanist(fontSize: 16.sp, color: Colors.black.withOpacity(0.65), fontWeight: FontWeight.w400),
+                style: GoogleFonts.urbanist(fontSize: 16.sp,
+                    color: AppColors.textAndOutlineColor.withOpacity(0.65), fontWeight: FontWeight.w400),
               ),
               value: _selectedItem,
               onChanged: (dynamic newValue) {
@@ -62,16 +63,26 @@ class _OurListObjectDropDownState extends State<OurListObjectDropDown> {
               underline: const SizedBox(),
               isExpanded: true,
               dropdownColor: Colors.white,
-              style: GoogleFonts.urbanist(fontSize: 16.sp, color: Colors.black54, fontWeight: FontWeight.w600),
+              style: GoogleFonts.urbanist(fontSize: 16.sp, color: AppColors.textAndOutlineBottom, fontWeight: FontWeight.w600),
               items: widget.dropdownItems.map((dynamic item) {
                 return DropdownMenuItem<dynamic>(
                   value: item[widget.keyName],
                   onTap: () {
                     widget.onDropdownChanged(item);
                   },
-                  child: Text(
-                    item[widget.keyName].toString(),
-                    style: TextStyle(fontSize: 16.sp, color: Colors.black54),
+                  child: ShaderMask(
+                    blendMode: BlendMode.srcIn,
+                    shaderCallback: (bounds) => LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                    ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                    child: Text(
+                      item[widget.keyName].toString(),
+                      style: TextStyle(fontSize: 16.sp,
+                          color: Colors.black54
+                      ),
+                    ),
                   ),
                 );
               }).toList(),

@@ -61,17 +61,30 @@ class RegisterView extends GetView<RegisterController> {
             SizedBox(
               height: 10.sp,
             ),
+            OurTextField(hint: 'Country', controller: controller.country, keyboardType: TextInputType.emailAddress),
+            SizedBox(
+              height: 10.sp,
+            ),
+            OurTextField(hint: 'State', controller: controller.state, keyboardType: TextInputType.emailAddress),
+            SizedBox(
+              height: 10.sp,
+            ),
+
             OurTextField(hint: 'Address', controller: controller.address),
+            SizedBox(
+              height: 10.sp,
+            ),
+            OurTextField(hint: 'Postal Code', controller: controller.postalCode, keyboardType: TextInputType.number,),
             SizedBox(
               height: 10.sp,
             ),
             OurTextField(hint: 'Mobile Number', controller: controller.mobileNumber, keyboardType: TextInputType.number),
             SizedBox(
-              height: 12.sp,
+              height: 10.sp,
             ),
             OurTextField(hint: 'Password', controller: controller.password, isPassword: true),
             SizedBox(
-              height: 15.sp,
+              height: 20.sp,
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -104,9 +117,17 @@ class RegisterView extends GetView<RegisterController> {
                         url: controller.termsConditions['terms_condition'],
                       ));
                     },
-                    child: Text(
-                      "By accepting, you're agree to our terms & conditions",
-                      style: GoogleFonts.urbanist(color: const Color(0Xff7983A3), fontSize: 16.sp),
+                    child: RichText(
+                      text:
+                      TextSpan(text: 'By accepting, you agree to our ',
+                          style: GoogleFonts.urbanist(fontSize: 16.sp, color: AppColors.lightBlackishTextColor),
+                          children: <TextSpan>[
+                            TextSpan(text: 'terms & conditions',
+                            style: GoogleFonts.urbanist(fontSize: 16.sp,
+                                // color: Color(0Xff7983A3),
+                                color: AppColors.splashDark,
+                                fontWeight: FontWeight.bold))
+                      ]),
                     ),
                   ),
                 )
@@ -118,20 +139,25 @@ class RegisterView extends GetView<RegisterController> {
             OurButton(
               onTap: () {
                 if (controller.formLogin.currentState!.validate()) {
-                  context.loaderOverlay.show();
-                  controller.registerUser().then((value) {
-                    context.loaderOverlay.hide();
-                    if (value.statusCode == 200) {
-                      HelpingMethods.showToast("Registered Successfully.");
-                      Get.back();
-                    } else {
-                      var data = value.data['data'];
-                      HelpingMethods.showToast(data['message']);
-                    }
-                  }).onError((error, stackTrace) {
-                    context.loaderOverlay.hide();
-                    HelpingMethods.showToast(error.toString());
-                  });
+                  if(controller.isCheckBox.value){
+                    context.loaderOverlay.show();
+                    controller.registerUser().then((value) {
+                      context.loaderOverlay.hide();
+                      if (value.statusCode == 200) {
+                        HelpingMethods.showToast("Registered Successfully.");
+                        Get.back();
+                      } else {
+                        var data = value.data['data'];
+                        HelpingMethods.showToast(data['message']);
+                      }
+                    }).onError((error, stackTrace) {
+                      context.loaderOverlay.hide();
+                      HelpingMethods.showToast(error.toString());
+                    });
+                  } else{
+                    // checkbox not checked
+                    HelpingMethods.showToast('Please accept Terms & Conditions to proceed');
+                  }
                 }
               },
               title: 'Create my Account',

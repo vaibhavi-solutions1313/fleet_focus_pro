@@ -15,6 +15,7 @@ import '../controllers/invoice_controller.dart';
 
 class InvoiceView extends GetView<InvoiceController> {
   const InvoiceView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,12 +23,18 @@ class InvoiceView extends GetView<InvoiceController> {
         backgroundColor: OurColors.cardBG,
         centerTitle: false,
         iconTheme: const IconThemeData(color: Colors.black54),
-        leading: IconButton(onPressed: () {
-          Get.back();
-        }, icon: Icon(Icons.arrow_back_ios_new)),
+        leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: Icon(Icons.arrow_back_ios_new)),
         title: Text(
           "Invoice",
-          style: TextStyle(fontSize: 18.sp, color: Color(0xFF524C4C), letterSpacing: 0.2, fontWeight: FontWeight.w900),
+          style: TextStyle(
+              fontSize: 18.sp,
+              color: Color(0xFF524C4C),
+              letterSpacing: 0.2,
+              fontWeight: FontWeight.w900),
         ),
         actions: [
           Padding(
@@ -36,10 +43,15 @@ class InvoiceView extends GetView<InvoiceController> {
               margin: EdgeInsets.symmetric(horizontal: 10.sp),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                gradient: const LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: <Color>[Color(0xFF12ADDD), Color(0xFF14598D)],
+                // gradient: const LinearGradient(
+                //   begin: Alignment.centerLeft,
+                //   end: Alignment.centerRight,
+                //   colors: <Color>[Color(0xFF12ADDD), Color(0xFF14598D)],
+                // ),
+                gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [AppColors.splashDark, AppColors.splashLight],
                 ),
               ),
               child: IconButton(
@@ -56,11 +68,15 @@ class InvoiceView extends GetView<InvoiceController> {
         ],
       ),
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 12.sp, vertical: 10.sp),
+        padding: EdgeInsets.symmetric(horizontal: 12.sp, vertical: 12.sp),
         children: [
           Text(
             "Create Invoice",
-            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600, color: Colors.black87),
+            style: TextStyle(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w600,
+                color: Colors.black87,
+                fontFamily: 'Montserrat'),
           ),
           SizedBox(
             height: 10.sp,
@@ -75,7 +91,8 @@ class InvoiceView extends GetView<InvoiceController> {
           SizedBox(
             height: 10.sp,
           ),
-          OurTextField(hint: 'Invoice Number', controller: controller.invoiceNumber),
+          OurTextField(
+              hint: 'Invoice Number', controller: controller.invoiceNumber),
           SizedBox(
             height: 10.sp,
           ),
@@ -90,14 +107,16 @@ class InvoiceView extends GetView<InvoiceController> {
               },
               icon: const Icon(
                 Icons.calendar_month,
-                color: Colors.black54,
+                // color: Colors.black54,
+                color: AppColors.textAndOutlineColor,
               ),
             ),
           ),
           SizedBox(
             height: 10.sp,
           ),
-          OurTextField(hint: 'Invoice Remarks', controller: controller.invoiceRemarks),
+          OurTextField(
+              hint: 'Invoice Remarks', controller: controller.invoiceRemarks),
           SizedBox(
             height: 10.sp,
           ),
@@ -117,7 +136,10 @@ class InvoiceView extends GetView<InvoiceController> {
               children: [
                 Text(
                   "Additionally",
-                  style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500, color: Colors.black87),
+                  style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black87),
                 ),
                 TextButton(
                     onPressed: () {
@@ -126,65 +148,132 @@ class InvoiceView extends GetView<InvoiceController> {
                         builder: (BuildContext context) {
                           return Container(
                             height: Adaptive.h(50),
-                            child: StatefulBuilder(builder: (context, setState) {
+                            child:
+                                StatefulBuilder(builder: (context, setState) {
                               return Material(
                                 child: Column(
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 18.0, vertical: 8),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(
-                                            'Invoice Details',
-                                            style: TextStyle(fontSize: 16.sp),
+                                          ShaderMask(
+                                            blendMode: BlendMode.srcIn,
+                                            shaderCallback: (bounds) =>
+                                                LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: [
+                                                AppColors.textAndOutlineTop,
+                                                AppColors.textAndOutlineBottom
+                                              ],
+                                            ).createShader(Rect.fromLTWH(
+                                                    0,
+                                                    0,
+                                                    bounds.width,
+                                                    bounds.height)),
+                                            child: Text(
+                                              'Invoice Details',
+                                              style: TextStyle(
+                                                  fontSize: 16.sp,
+                                                  fontWeight: FontWeight.w700),
+                                            ),
                                           ),
                                           InkWell(
                                             onTap: () {
                                               Get.back();
                                             },
-                                            child: Icon(
-                                              Icons.cancel,
-                                              color: Colors.black.withOpacity(0.65),
+                                            child: ShaderMask(
+                                              blendMode: BlendMode.srcIn,
+                                              shaderCallback: (bounds) =>
+                                                  LinearGradient(
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.bottomCenter,
+                                                colors: [
+                                                  AppColors.textAndOutlineTop,
+                                                  AppColors.textAndOutlineBottom
+                                                ],
+                                              ).createShader(Rect.fromLTWH(
+                                                      0,
+                                                      0,
+                                                      bounds.width,
+                                                      bounds.height)),
+                                              child: Icon(
+                                                Icons.cancel,
+                                                color: Colors.black
+                                                    .withOpacity(0.65),
+                                              ),
                                             ),
                                           ),
                                         ],
                                       ),
                                     ),
                                     Expanded(
-                                      child: Obx(() => controller.selectedAmountDescription.isNotEmpty
+                                      child: Obx(() => controller
+                                              .selectedAmountDescription
+                                              .isNotEmpty
                                           ? Column(
                                               children: [
                                                 Expanded(
                                                   child: ListView(
-                                                    padding: EdgeInsets.symmetric(horizontal: 18),
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 18),
                                                     children: List.generate(
-                                                      controller.selectedAmountDescription.length,
+                                                      controller
+                                                          .selectedAmountDescription
+                                                          .length,
                                                       (index) => Column(
                                                         children: [
                                                           Row(
-                                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
                                                             children: [
                                                               Expanded(
                                                                 child: Row(
                                                                   children: [
                                                                     Text(
                                                                       "${index + 1}.",
-                                                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontWeight: FontWeight
+                                                                              .w500,
+                                                                          color:
+                                                                              AppColors.textAndOutlineBottom),
                                                                     ),
                                                                     const SizedBox(
                                                                       width: 10,
                                                                     ),
                                                                     Flexible(
-                                                                      child: Column(
-                                                                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                                                                      child:
+                                                                          Column(
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.stretch,
                                                                         children: [
-                                                                          Text(
-                                                                            controller.selectedAmountDescription[index]['amount'],
-                                                                            style: TextStyle(fontSize: 15.sp),
+                                                                          ShaderMask(
+                                                                            shaderCallback: (bounds) => LinearGradient(
+                                                                              begin: Alignment.topCenter,
+                                                                              end: Alignment.bottomCenter,
+                                                                              colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                                                                            ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                                                                            child: RichText(
+                                                                              text:
+                                                                                  TextSpan(text: 'Amount: ', style: TextStyle(fontSize: 15.sp), children: <TextSpan>[
+                                                                                TextSpan(text: '${controller.selectedAmountDescription[index]['amount']}', style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.normal))
+                                                                              ]),
+                                                                            ),
                                                                           ),
-                                                                          Text(controller.selectedAmountDescription[index]['description'], style: TextStyle(fontSize: 15.sp)),
+                                                                          Text(
+                                                                              'Description: ${controller.selectedAmountDescription[index]['description']}',
+                                                                              style: TextStyle(fontSize: 15.sp, color: AppColors.textAndOutlineBottom)),
                                                                         ],
                                                                       ),
                                                                     ),
@@ -193,65 +282,126 @@ class InvoiceView extends GetView<InvoiceController> {
                                                               ),
                                                               TextButton(
                                                                 onPressed: () {
-                                                                  controller.selectedAmountDescription.removeAt(index);
-                                                                  controller.subtotal.value = 0.0;
-                                                                  controller.selectedAmountDescription.forEach((element) {
-                                                                    controller.subtotal.value = double.parse(element['amount']) + controller.subtotal.value;
-                                                                    controller.gst.value = controller.subtotal.value / 10;
-                                                                    controller.totalAmount.value = controller.gst.value + controller.subtotal.value;
+                                                                  controller
+                                                                      .selectedAmountDescription
+                                                                      .removeAt(
+                                                                          index);
+                                                                  controller
+                                                                      .subtotal
+                                                                      .value = 0.0;
+                                                                  controller
+                                                                      .selectedAmountDescription
+                                                                      .forEach(
+                                                                          (element) {
+                                                                    controller
+                                                                        .subtotal
+                                                                        .value = double.parse(element[
+                                                                            'amount']) +
+                                                                        controller
+                                                                            .subtotal
+                                                                            .value;
+                                                                    controller
+                                                                        .gst
+                                                                        .value = controller
+                                                                            .subtotal
+                                                                            .value /
+                                                                        10;
+                                                                    controller
+                                                                        .totalAmount
+                                                                        .value = controller
+                                                                            .gst
+                                                                            .value +
+                                                                        controller
+                                                                            .subtotal
+                                                                            .value;
                                                                   });
                                                                 },
-                                                                child: const Text("Remove"),
+                                                                child: const Text(
+                                                                    "Remove"),
                                                               ),
                                                             ],
                                                           ),
-                                                          index != controller.selectedAmountDescription.length - 1 ? Divider() : Row()
+                                                          index !=
+                                                                  controller
+                                                                          .selectedAmountDescription
+                                                                          .length -
+                                                                      1
+                                                              ? Divider()
+                                                              : Row()
                                                         ],
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsets.symmetric(horizontal: 15.0.sp, vertical: 10.sp),
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 15.0.sp,
+                                                      vertical: 10.sp),
                                                   child: Obx(() => Column(
-                                                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .stretch,
                                                         children: [
                                                           Row(
-                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
                                                             children: [
                                                               Text(
                                                                 "Sub Total",
-                                                                style: TextStyle(fontSize: 15.sp),
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        15.sp, color: AppColors.textAndOutlineTop),
                                                               ),
                                                               Text(
-                                                                controller.subtotal.toString(),
-                                                                style: TextStyle(fontSize: 15.sp),
+                                                                controller
+                                                                    .subtotal
+                                                                    .toString(),
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        15.sp, color: AppColors.textAndOutlineTop),
                                                               ),
                                                             ],
                                                           ),
                                                           Row(
-                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
                                                             children: [
                                                               Text(
                                                                 "GST",
-                                                                style: TextStyle(fontSize: 15.sp),
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        15.sp, color: AppColors.textAndOutlineTop),
                                                               ),
                                                               Text(
-                                                                controller.gst.toString(),
-                                                                style: TextStyle(fontSize: 15.sp),
+                                                                controller.gst
+                                                                    .toString(),
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        15.sp, color: AppColors.textAndOutlineTop),
                                                               ),
                                                             ],
                                                           ),
                                                           Row(
-                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
                                                             children: [
                                                               Text(
                                                                 "Total",
-                                                                style: TextStyle(fontSize: 15.sp),
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        15.sp, color: AppColors.textAndOutlineTop),
                                                               ),
                                                               Text(
-                                                                controller.totalAmount.value.toString(),
-                                                                style: TextStyle(fontSize: 15.sp),
+                                                                controller
+                                                                    .totalAmount
+                                                                    .value
+                                                                    .toString(),
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        15.sp, color: AppColors.textAndOutlineTop),
                                                               ),
                                                             ],
                                                           ),
@@ -260,7 +410,9 @@ class InvoiceView extends GetView<InvoiceController> {
                                                 ),
                                               ],
                                             )
-                                          : const Center(child: Text("No Invoice Detail Selected"))),
+                                          : const Center(
+                                              child: Text(
+                                                  "No Invoice Detail Selected...", style: TextStyle(color: AppColors.textAndOutlineTop, fontWeight: FontWeight.w500),))),
                                     ),
                                   ],
                                 ),
@@ -270,7 +422,8 @@ class InvoiceView extends GetView<InvoiceController> {
                         },
                       );
                     },
-                    child: Obx(() => Text("Added List (${controller.selectedAmountDescription.length})"))),
+                    child: Obx(() => Text(
+                        "Added List (${controller.selectedAmountDescription.length})"))),
               ],
             ),
           ),
@@ -279,23 +432,33 @@ class InvoiceView extends GetView<InvoiceController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                OurTextField(hint: 'Amount', controller: controller.amount, keyboardType: TextInputType.number),
+                OurTextField(
+                    hint: 'Amount',
+                    controller: controller.amount,
+                    keyboardType: TextInputType.number),
                 SizedBox(
                   height: 10.sp,
                 ),
-                OurTextField(hint: 'Description', controller: controller.description),
+                OurTextField(
+                    hint: 'Description', controller: controller.description),
                 SizedBox(
-                  height: 10.sp,
+                  height: 20.sp,
                 ),
                 OurMainButton(
                   title: 'Add',
                   onPress: () {
                     if (controller.amountDescForm.currentState!.validate()) {
-                      controller.selectedAmountDescription.add({"amount": controller.amount.text, "description": controller.description.text});
+                      controller.selectedAmountDescription.add({
+                        "amount": controller.amount.text,
+                        "description": controller.description.text
+                      });
                       controller.selectedAmountDescription.forEach((element) {
-                        controller.subtotal.value = double.parse(element['amount']) + controller.subtotal.value;
+                        controller.subtotal.value =
+                            double.parse(element['amount']) +
+                                controller.subtotal.value;
                         controller.gst.value = controller.subtotal.value / 10;
-                        controller.totalAmount.value = controller.gst.value + controller.subtotal.value;
+                        controller.totalAmount.value =
+                            controller.gst.value + controller.subtotal.value;
                       });
                       controller.amount.clear();
                       controller.description.clear();
@@ -321,7 +484,8 @@ class InvoiceView extends GetView<InvoiceController> {
                     HelpingMethods.showToast(error.toString());
                   });
                 } else {
-                  HelpingMethods.showToast('Please add at least one amount, description.');
+                  HelpingMethods.showToast(
+                      'Please add at least one amount, description.');
                 }
               },
               title: "Generate Invoice")

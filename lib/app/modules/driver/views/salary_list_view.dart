@@ -22,14 +22,18 @@ class _SalaryListViewState extends State<SalaryListView> {
       appBar: AppBar(
         backgroundColor: OurColors.cardBG,
         centerTitle: false,
-        iconTheme: const IconThemeData(color: Colors.blue),
+        // iconTheme: const IconThemeData(color: Colors.blue),
+        iconTheme: const IconThemeData(color: Colors.black54),
+        leading: IconButton(onPressed: () {
+          Get.back();
+        }, icon: Icon(Icons.arrow_back_ios_new)),
         title: Text(
           "Salaries",
           style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600, color: Colors.black),
         ),
       ),
       body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Obx(() => Expanded(
                 child: DataTable(
@@ -44,10 +48,11 @@ class _SalaryListViewState extends State<SalaryListView> {
                         style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16.sp),
                       ),
                     ),
+
                     DataColumn(
                       label: Text(
                         'View',
-                        style: TextStyle(fontWeight: FontWeight.w400, color: Colors.white, fontSize: 14.5.sp),
+                        style: TextStyle(fontWeight: FontWeight.w400, color: Colors.white, fontSize: 16.sp),
                       ),
                     ),
                   ],
@@ -55,9 +60,17 @@ class _SalaryListViewState extends State<SalaryListView> {
                     return DataRow(
                       cells: [
                         DataCell(
-                          Text(
-                            row['user_name'].toString(),
-                            style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black.withOpacity(0.75), fontSize: 14.5.sp),
+                          ShaderMask(
+                            blendMode: BlendMode.srcIn,
+                            shaderCallback: (bounds) => LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                            ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                            child: Text(
+                              row['user_name'].toString(),
+                              style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black.withOpacity(0.75), fontSize: 15.5.sp),
+                            ),
                           ),
                         ),
                         DataCell(
@@ -73,7 +86,7 @@ class _SalaryListViewState extends State<SalaryListView> {
                                 context.loaderOverlay.hide();
                               });
                             },
-                            icon: Icon(Icons.visibility),
+                            icon: Icon(Icons.visibility, color: AppColors.textAndOutlineColor,),
                           ),
                         ),
                       ],

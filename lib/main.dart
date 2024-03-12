@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,7 +27,9 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
         }),
       );
 }
-
+Position? userPosition;
+var latitude = 78.0.obs;
+var longitude = 84.0.obs;
 void main() async {
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,15 +66,26 @@ void main() async {
     ResponsiveSizer(
       builder: (context, orientation, screenType) {
         return GlobalLoaderOverlay(
-          child: LoaderOverlay(
-            useDefaultLoading: false,
-            overlayWidget: const Center(
-              child: CircularProgressIndicator(
-                color: Colors.orange,
+          useDefaultLoading: false,
+          overlayWidget: Stack(
+            children: [
+              // Blur background for the entire screen
+              Opacity(
+                opacity: 0.7,
+                child: Container(
+                  color: Colors.black,
+                ),
               ),
-            ),
-            overlayColor: Colors.white12,
-            overlayOpacity: 0.8,
+              const Center(
+                child: SpinKitCircle(
+                  color: Colors.blue,
+                  size: 50.0,
+                ),
+              ),
+            ],
+          ),
+          overlayColor: Colors.transparent,
+          overlayOpacity: 1.0,
             child: GetMaterialApp(
               title: "Fleet Focus Pro",
               debugShowCheckedModeBanner: false,
@@ -85,6 +100,8 @@ void main() async {
                 useMaterial3: true,
                 fontFamily: GoogleFonts.lato().fontFamily,
                 appBarTheme: AppBarTheme(
+                  elevation: 0,
+                  backgroundColor: Colors.white,
                   iconTheme: IconThemeData(
                     color: Colors.black54
                   )
@@ -95,8 +112,7 @@ void main() async {
                 await splashControl.getTokenBasedData();
               },
             ),
-          ),
-        );
+          );
       },
     ),
   );

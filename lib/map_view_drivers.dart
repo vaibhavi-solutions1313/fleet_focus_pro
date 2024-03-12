@@ -168,11 +168,10 @@ class _MapDriversViewState extends State<MapDriversView> {
                         IconButton(
                             onPressed: () {
                               Get.back();
-                            },
-                            icon: const Icon(Icons.arrow_back_rounded)),
+                            },icon: Icon(Icons.arrow_back_ios_new, size: 20,)),
                         Text(
-                          "Realtime",
-                          style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
+                          "Realtime Driver Location",
+                          style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
                         )
                       ],
                     ),

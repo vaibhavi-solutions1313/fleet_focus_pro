@@ -35,9 +35,15 @@ class _OurTextFieldState extends State<OurTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // decoration: BoxDecoration(color: Colors.grey.shade200, borderRadius: BorderRadius.circular(16.sp)),
-      // padding: EdgeInsets.symmetric(horizontal: 18.sp),
-      // margin: EdgeInsets.symmetric(horizontal: 8.sp),
+      margin: EdgeInsets.symmetric(horizontal: 8.sp),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12.sp),
+          border: Border.all(
+              color: AppColors.textAndOutlineBottom,
+              width: 1.0
+          )
+      ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 8.0.sp),
         child: TextFormField(
@@ -45,7 +51,11 @@ class _OurTextFieldState extends State<OurTextField> {
           controller: widget.controller,
           readOnly: widget.isReadOnly == true ? true : false,
           maxLines: widget.maxLines,
-          style: GoogleFonts.urbanist(fontSize: 16.sp, color: Colors.black87),
+          style: GoogleFonts.urbanist(fontSize: 15.5.sp,
+              // color: Colors.black87
+              color: AppColors.textAndOutlineBottom,
+            fontWeight: FontWeight.w500
+          ),
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Please fill this field';
@@ -59,9 +69,13 @@ class _OurTextFieldState extends State<OurTextField> {
           obscureText: _showPassword == true && widget.isPassword == true ? true : false,
           decoration: InputDecoration(
             filled: true,
-            fillColor:  AppColors.textFilledColor,
-            border: OutlineInputBorder(borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(8.0)),
+            // fillColor:  AppColors.textFilledColor,
+            fillColor: Colors.white,
+            border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+              // borderSide: BorderSide(color: AppColors.textAndOutlineBottom, width: 1.0),
+            borderRadius: BorderRadius.circular(8.0),
+            ),
 
             // enabledBorder: OutlineInputBorder(
             //   borderRadius: BorderRadius.circular(12.sp),
@@ -72,7 +86,7 @@ class _OurTextFieldState extends State<OurTextField> {
             //   borderSide: BorderSide(color: Colors.black.withOpacity(0.3), width: 1.0),
             // ),
             hintText: widget.hint,
-            hintStyle: GoogleFonts.urbanist(fontSize: 15,fontWeight: FontWeight.w600,color: AppColors.textFillHintTextColor),
+            hintStyle: GoogleFonts.urbanist(fontSize: 15.5.sp,fontWeight: FontWeight.w600,color: AppColors.textAndOutlineColor.withOpacity(0.4)),
             errorStyle: const TextStyle(
               color: Colors.blue, // Change the color of the error text
             ),

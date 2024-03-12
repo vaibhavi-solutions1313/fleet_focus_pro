@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:fleet_focus_pro/widgets/our_main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -20,7 +21,10 @@ class ProfileView extends GetView<ProfileController> {
       appBar: AppBar(
         backgroundColor: OurColors.cardBG,
         centerTitle: false,
-        iconTheme: const IconThemeData(color: Colors.blue),
+        iconTheme: const IconThemeData(color: Colors.black54),
+        leading: IconButton(onPressed: () {
+          Get.back();
+        }, icon: Icon(Icons.arrow_back_ios_new)),
         title: Text(
           "Profile",
           style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600, color: Colors.black),
@@ -41,7 +45,7 @@ class ProfileView extends GetView<ProfileController> {
                     child: Container(
                       width: Get.width / 3,
                       height: Get.width / 3,
-                      color: Colors.black54,
+                      color: AppColors.textAndOutlineBottom.withOpacity(0.3),
                       child: controller.selectedImagePath.value.isNotEmpty
                           ? Image.file(
                               File(controller.selectedImagePath.value),
@@ -52,7 +56,7 @@ class ProfileView extends GetView<ProfileController> {
                               errorBuilder: (context, error, stackTrace) => Icon(
                                 Icons.image_not_supported,
                                 size: 45.sp,
-                                color: Colors.black54,
+                                color: AppColors.textAndOutlineColor,
                               ),
                               fit: BoxFit.cover,
                               // width: 45.sp,
@@ -63,17 +67,25 @@ class ProfileView extends GetView<ProfileController> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 2.0.sp),
+            padding: EdgeInsets.symmetric(vertical: 10.0.sp),
             child: Text(
               "Basic Information",
-              style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 15.sp),
+              style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w600, fontSize: 18.sp),
             ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10.0.sp),
-            child: Text(
-              "Full name",
-              style: TextStyle(color: Colors.black87, fontSize: 14.sp, fontWeight: FontWeight.w600),
+            child: ShaderMask(
+              blendMode: BlendMode.srcIn,
+              shaderCallback: (bounds) => LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+              ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+              child: Text(
+                "Full name",
+                style: TextStyle(color: Colors.black87, fontSize: 15.sp, fontWeight: FontWeight.w600),
+              ),
             ),
           ),
           OurTextField(hint: 'Full Name', controller: controller.name),
@@ -82,9 +94,17 @@ class ProfileView extends GetView<ProfileController> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10.0.sp),
-            child: Text(
-              "Username",
-              style: TextStyle(color: Colors.black87, fontSize: 14.sp, fontWeight: FontWeight.w600),
+            child: ShaderMask(
+              blendMode: BlendMode.srcIn,
+              shaderCallback: (bounds) => LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+              ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+              child: Text(
+                "Username",
+                style: TextStyle(color: Colors.black87, fontSize: 15.sp, fontWeight: FontWeight.w600),
+              ),
             ),
           ),
           OurTextField(hint: 'User Name', controller: controller.userName),
@@ -93,9 +113,17 @@ class ProfileView extends GetView<ProfileController> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10.0.sp),
-            child: Text(
-              "Email",
-              style: TextStyle(color: Colors.black87, fontSize: 14.sp, fontWeight: FontWeight.w600),
+            child: ShaderMask(
+              blendMode: BlendMode.srcIn,
+              shaderCallback: (bounds) => LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+              ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+              child: Text(
+                "Email",
+                style: TextStyle(color: Colors.black87, fontSize: 15.sp, fontWeight: FontWeight.w600),
+              ),
             ),
           ),
           OurTextField(hint: 'Email Address', controller: controller.email),
@@ -104,9 +132,17 @@ class ProfileView extends GetView<ProfileController> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10.0.sp),
-            child: Text(
-              "Mobile",
-              style: TextStyle(color: Colors.black87, fontSize: 14.sp, fontWeight: FontWeight.w600),
+            child: ShaderMask(
+              blendMode: BlendMode.srcIn,
+              shaderCallback: (bounds) => LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+              ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+              child: Text(
+                "Mobile",
+                style: TextStyle(color: Colors.black87, fontSize: 15.sp, fontWeight: FontWeight.w600),
+              ),
             ),
           ),
           OurTextField(hint: 'Mobile', controller: controller.mobile, isReadOnly: false),
@@ -115,9 +151,17 @@ class ProfileView extends GetView<ProfileController> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10.0.sp),
-            child: Text(
-              "Address",
-              style: TextStyle(color: Colors.black87, fontSize: 14.sp, fontWeight: FontWeight.w600),
+            child: ShaderMask(
+              blendMode: BlendMode.srcIn,
+              shaderCallback: (bounds) => LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+              ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+              child: Text(
+                "Address",
+                style: TextStyle(color: Colors.black87, fontSize: 15.sp, fontWeight: FontWeight.w600),
+              ),
             ),
           ),
           OurTextField(hint: 'Address', controller: controller.address),
@@ -125,22 +169,30 @@ class ProfileView extends GetView<ProfileController> {
             height: 18.sp,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 12.0.sp),
+            padding: EdgeInsets.symmetric(vertical: 10.0.sp),
             child: Text(
               "Security Information",
-              style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 15.sp),
+              style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w600, fontSize: 18.sp),
             ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10.0.sp),
-            child: Text(
-              "New Password",
-              style: TextStyle(color: Colors.black87, fontSize: 14.sp, fontWeight: FontWeight.w600),
+            child: ShaderMask(
+              blendMode: BlendMode.srcIn,
+              shaderCallback: (bounds) => LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+              ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+              child: Text(
+                "New Password",
+                style: TextStyle(color: Colors.black87, fontSize: 15.sp, fontWeight: FontWeight.w600),
+              ),
             ),
           ),
           OurTextField(hint: 'New Password', controller: controller.newPassword, isPassword: true),
           SizedBox(
-            height: 15.sp,
+            height: 20.sp,
           ),
           OurButton(
             onTap: () {
@@ -161,6 +213,7 @@ class ProfileView extends GetView<ProfileController> {
                     HelpingMethods.showToast(value.error.toString());
                   } else {
                     HelpingMethods.showToast("Profile not updated.");
+                    HelpingMethods.showToast("Error in updating profile pic");
                   }
                 }
               });
@@ -170,30 +223,29 @@ class ProfileView extends GetView<ProfileController> {
           SizedBox(
             height: 10.sp,
           ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.grey, foregroundColor: Colors.white, padding: EdgeInsets.symmetric(vertical: 13.sp)),
-            onPressed: () async {
+          OurMainButton(
+            title: 'Logout',
+            onPress: () async{
               box.erase();
               Get.offAllNamed(Routes.SPLASH);
               final splashControl = Get.find<SplashController>();
               await splashControl.getTokenBasedData();
             },
-            child: Text(
-              'Logout',
-              style: TextStyle(fontSize: 16.sp),
-            ),
           ),
           SizedBox(
-            height: 10.sp,
+            height: 15.sp,
           ),
           Obx(() => controller.userInfo.value['created_at'] != null
               ? Align(
                   alignment: Alignment.center,
                   child: Text(
                     "Joined: ${controller.reformattedTime(controller.userInfo.value['created_at'].toString())}",
-                    style: TextStyle(color: Colors.black87, fontSize: 14.sp),
+                    style: TextStyle(color: AppColors.textAndOutlineTop, fontSize: 14.sp),
                   ))
-              : const SizedBox.shrink())
+              : const SizedBox.shrink()),
+          SizedBox(
+            height: 5.0,
+          )
         ],
       ),
     );

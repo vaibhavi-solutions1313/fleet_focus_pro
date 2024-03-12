@@ -28,16 +28,16 @@ class DriverView extends GetView<DriverController> {
             onPressed: () {
               Get.to(MapDriversView(), transition: Transition.rightToLeft);
             },
-            icon: const Icon(Icons.map),
+            icon: const Icon(Icons.map, color: AppColors.textAndOutlineColor,),
           ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 12.sp),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
-              gradient: const LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: <Color>[Color(0xFF12ADDD), Color(0xFF14598D)],
+              gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [AppColors.splashDark, AppColors.splashLight],
               ),
             ),
             child: IconButton(
@@ -66,17 +66,21 @@ class DriverView extends GetView<DriverController> {
                       decoration: BoxDecoration(
                           color: AppColors.whiteColor,
                           borderRadius: BorderRadius.circular(10.0),
-                          boxShadow: [
-                            BoxShadow(
-                                offset: Offset(0.5, 0.5),
-                                spreadRadius: 0.8,
-                                blurRadius: 2,
-                                color: Colors.grey.shade200
-                            )
-                          ]
+                          border: Border.all(
+                            color: AppColors.textAndOutlineBottom, // Border color
+                            width: 1.2,         // Border width
+                          ),
+                          // boxShadow: [
+                          //   BoxShadow(
+                          //       offset: Offset(0, 2),
+                          //       spreadRadius: 0.8,
+                          //       blurRadius: 5,
+                          //       color: Colors.grey
+                          //   )
+                          // ]
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(15.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
@@ -87,17 +91,33 @@ class DriverView extends GetView<DriverController> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.stretch,
                                     children: [
-                                      Text(
-                                        "User Name: ${controller.driverList[index]['user_name'].toString()}",
-                                        style: GoogleFonts.lato(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 16.sp),
+                                      ShaderMask(
+                                        blendMode: BlendMode.srcIn,
+                                        shaderCallback: (bounds) => LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                          colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                                        ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                                        child: Text(
+                                          "User Name: ${controller.driverList[index]['user_name'].toString()}",
+                                          style: GoogleFonts.lato(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 16.sp),
+                                        ),
                                       ),
                                       SizedBox(
                                         height: 10.sp,
                                       ),
                                       if (controller.driverList[index]['mobile_number'] != null)
-                                        Text(
-                                          "Mobile Number: ${controller.driverList[index]['mobile_number']}",
-                                          style: GoogleFonts.lato(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                        ShaderMask(
+                                          blendMode: BlendMode.srcIn,
+                                          shaderCallback: (bounds) => LinearGradient(
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                            colors: [AppColors.textAndOutlineTop.withOpacity(0.6), AppColors.textAndOutlineBottom.withOpacity(0.8)],
+                                          ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                                          child: Text(
+                                            "Mobile Number: ${controller.driverList[index]['mobile_number']}",
+                                            style: GoogleFonts.lato(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                          ),
                                         ),
                                       SizedBox(
                                         height: 10.sp,
@@ -105,11 +125,20 @@ class DriverView extends GetView<DriverController> {
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(
-                                            "Wages : ${controller.driverList[index]['wages'] != null ? controller.driverList[index]['wages'].toString() : "NA"}",
-                                            style: GoogleFonts.lato(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 16.sp),
+                                          ShaderMask(
+                                            blendMode: BlendMode.srcIn,
+                                            shaderCallback: (bounds) => LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: [AppColors.textAndOutlineTop.withOpacity(0.7), AppColors.textAndOutlineBottom.withOpacity(0.7)],
+                                            ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                                            child: Text(
+                                              "Wages : ${controller.driverList[index]['wages'] != null ? controller.driverList[index]['wages'].toString() : "NA"}",
+                                              style: GoogleFonts.lato(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 16.sp),
+                                            ),
                                           ),
                                           Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                                             children: [
                                               GestureDetector(
                                                   onTap: () {
@@ -118,42 +147,42 @@ class DriverView extends GetView<DriverController> {
                                                   },
                                                   child: Icon(
                                                     Icons.edit,
-                                                    color: Colors.black45,
+                                                    color: AppColors.textAndOutlineTop.withOpacity(0.7),
                                                   )),
                                               SizedBox(
                                                 width: 4,
                                               ),
                                               Icon(
                                                 Icons.search,
-                                                color: Colors.black45,
+                                                color: AppColors.textAndOutlineTop.withOpacity(0.7),
                                               ),
                                               SizedBox(
                                                 width: 4,
                                               ),
                                               Icon(
                                                 Icons.print,
-                                                color: Colors.black45,
+                                                color: AppColors.textAndOutlineTop.withOpacity(0.6),
                                               ),
                                               SizedBox(
                                                 width: 4,
                                               ),
                                               Icon(
                                                 Icons.edit_document,
-                                                color: Colors.black45,
+                                                color: AppColors.textAndOutlineTop.withOpacity(0.7),
                                               ),
                                               SizedBox(
                                                 width: 4,
                                               ),
                                               Icon(
                                                 Icons.location_on,
-                                                color: Colors.black45,
+                                                color: AppColors.textAndOutlineTop.withOpacity(0.7),
                                               ),
                                               SizedBox(
                                                 width: 4,
                                               ),
                                               Icon(
                                                 Icons.message,
-                                                color: Colors.black45,
+                                                color: AppColors.textAndOutlineTop.withOpacity(0.7),
                                               ),
                                             ],
                                           )

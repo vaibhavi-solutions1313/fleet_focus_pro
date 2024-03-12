@@ -25,6 +25,7 @@ import '../modules/register/views/register_view.dart';
 import '../modules/roaster/bindings/roaster_binding.dart';
 import '../modules/roaster/views/roaster_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
+import '../modules/splash/views/onboarding_screen.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../modules/truck/bindings/truck_binding.dart';
 import '../modules/truck/views/truck_view.dart';
@@ -46,6 +47,12 @@ class AppPages {
       page: () => const SplashView(),
       binding: SplashBinding(),
     ),
+    GetPage(
+      name: _Paths.ONBOARDING,
+      page: () => const OnboardingScreen(),
+      binding: SplashBinding(),
+    ),
+
     GetPage(
       name: _Paths.DASHBOARD,
       page: () => const DashboardView(),

@@ -23,7 +23,8 @@ class Endpoints {
   static String getUser = '/api/get-vendor';
   static String registerUser = '/api/register-vendor';
   static String registerDriver = '/api/register-driver';
-  static String editDriver = '/api/edit-driver';
+  // static String editDriver = '/api/edit-driver';
+  static String editDriverUser = '/api/edit-driver-user';
   static String editAvatar = '/api/edit-driver-avatar';
   static String requestOTPinEmail = '/api/send-forgot-password-otp';
   static String confirmPassOtp = '/api/forgot-password';
@@ -99,6 +100,8 @@ class TextFonts {
 class AppColors{
   static const Color appPrimaryColor=Color(0xff154379);
   static const Color appPrimaryLightColor=Color(0xff12B5E4);
+  static const Color splashDark=Color(0xff6298D8);
+  static const Color splashLight=Color(0xff9dcae1);
   static const Color canvasColor=whiteColor;
 
   ///Common colors
@@ -108,6 +111,9 @@ class AppColors{
   static const Color whiteColor=Color(0xffFFFFFF);
   static const Color creamColor=Color(0xffF4F4F4);
   static const Color textFilledColor=Color(0xffF2F2F2);
+  static const Color textAndOutlineBottom=Color(0xff0B57BE);
+  static const Color textAndOutlineTop=Color(0xff030C4C);
+  static const Color textAndOutlineColor=Color(0xff3779ab);
 
   ///Light Common colors
   // static const Color lightGreenishColor=Color(0xff26A65B);

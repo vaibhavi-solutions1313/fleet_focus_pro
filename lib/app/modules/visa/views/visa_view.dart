@@ -18,7 +18,10 @@ class VisaView extends GetView<VisaController> {
       appBar: AppBar(
         backgroundColor: OurColors.cardBG,
         centerTitle: false,
-        iconTheme: const IconThemeData(color: Colors.blue),
+        iconTheme: const IconThemeData(color: Colors.black54),
+        leading: IconButton(onPressed: () {
+          Get.back();
+        }, icon: Icon(Icons.arrow_back_ios_new)),
         title: Text(
           "Visa",
           style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600, color: Colors.black),
@@ -28,13 +31,10 @@ class VisaView extends GetView<VisaController> {
             margin: EdgeInsets.symmetric(horizontal: 10.sp),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
-              gradient: const LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: <Color>[
-                  Color(0xFF12ADDD),
-                  Color(0xFF14598D)
-                ],
+              gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [AppColors.splashDark, AppColors.splashLight],
               ),
             ),
             child: IconButton(
@@ -114,9 +114,17 @@ class VisaView extends GetView<VisaController> {
                       return DataRow(
                         cells: [
                           DataCell(
-                            Text(
-                              row['status'].toString(),
-                              style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black.withOpacity(0.75), fontSize: 14.5.sp),
+                            ShaderMask(
+                              blendMode: BlendMode.srcIn,
+                              shaderCallback: (bounds) => LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                              ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                              child: Text(
+                                row['status'].toString().toUpperCase(),
+                                style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black.withOpacity(0.75), fontSize: 15.5.sp),
+                              ),
                             ),
                             showEditIcon: true,
                             onTap: () {

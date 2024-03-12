@@ -58,7 +58,7 @@ class ProfileController extends GetxController {
     forms.addIf(userName.text.isNotEmpty, "username", userName.text);
     forms.addIf(address.text.isNotEmpty, "address", address.text);
     networkHelper.setAuthorizationToken(box.read(StorageKeys.bearerToken));
-    return await networkHelper.postFormData(Endpoints.editDriver, forms, []);
+    return await networkHelper.postFormData(Endpoints.editDriverUser, forms, []);
   }
 
   Future<ApiResponse<dynamic>> updateProfilePic() async {

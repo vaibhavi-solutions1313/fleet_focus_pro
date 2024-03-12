@@ -73,14 +73,14 @@ class _SendRoasterViewState extends State<SendRoasterView> {
                 },
                 icon: const Icon(
                   Icons.date_range,
-                  color: Colors.black54,
+                  color: AppColors.textAndOutlineColor,
                 ),
               ),
             ),
           ),
           Expanded(
             child: ListView.builder(
-              padding: EdgeInsets.symmetric(horizontal: 15.sp, vertical: 10.sp),
+              padding: EdgeInsets.symmetric(horizontal: 0.sp, vertical: 10.sp),
               itemCount: controller.vehicleList.value.length,
               itemBuilder: (context, index) {
                 return Card(
@@ -93,7 +93,7 @@ class _SendRoasterViewState extends State<SendRoasterView> {
                       children: [
                         Text(
                           "Truck Rego : ${controller.vehicleList.value[index]['rego']}",
-                          style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500, color: Colors.black54),
+                          style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500, color: AppColors.textAndOutlineTop),
                         ),
                         Obx(() => OurListObjectDropDown(
                             dropdownItems: Get.find<DriverController>().driverList.value,
@@ -127,8 +127,8 @@ class _SendRoasterViewState extends State<SendRoasterView> {
                                     });
                                   },
                                   icon: const Icon(
-                                    Icons.date_range,
-                                    color: Colors.black54,
+                                    Icons.access_time,
+                                    color: AppColors.textAndOutlineColor,
                                   ),
                                 ),
                               ),
@@ -151,8 +151,8 @@ class _SendRoasterViewState extends State<SendRoasterView> {
                                     });
                                   },
                                   icon: const Icon(
-                                    Icons.date_range,
-                                    color: Colors.black54,
+                                    Icons.access_time,
+                                    color: AppColors.textAndOutlineColor,
                                   ),
                                 ),
                               ),
@@ -167,7 +167,7 @@ class _SendRoasterViewState extends State<SendRoasterView> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 18.0.sp, vertical: 15.sp),
+            padding: EdgeInsets.symmetric(horizontal: 15.0.sp, vertical: 15.sp),
             child: OurButton(
                 onTap: () {
                   controller.selectedDates.value.tableData = controller.selectedTableData;

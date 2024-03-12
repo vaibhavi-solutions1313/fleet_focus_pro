@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../../../constant.dart';
@@ -53,7 +54,12 @@ class _TermsConditionViewState extends State<TermsConditionView> {
       appBar: AppBar(
         backgroundColor: OurColors.cardBG,
         centerTitle: false,
-        iconTheme: const IconThemeData(color: Colors.blue),
+        iconTheme: const IconThemeData(color: Colors.black54),
+        leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: Icon(Icons.arrow_back_ios_new)),
         title: Text(
           "Terms & Conditions",
           style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600, color: Colors.black),

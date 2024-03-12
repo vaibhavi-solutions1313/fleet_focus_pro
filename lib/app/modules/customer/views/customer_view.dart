@@ -35,10 +35,10 @@ class CustomerView extends GetView<CustomerController> {
               margin: EdgeInsets.symmetric(horizontal: 12.sp),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                gradient: const LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: <Color>[Color(0xFF12ADDD), Color(0xFF14598D)],
+                gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [AppColors.splashDark, AppColors.splashLight],
                 ),
               ),
               child: IconButton(
@@ -209,11 +209,15 @@ class CustomerView extends GetView<CustomerController> {
                         decoration: BoxDecoration(
                           color: AppColors.whiteColor,
                           borderRadius: BorderRadius.circular(14.0),
+                            // border: Border.all(
+                            //   color: AppColors.textAndOutlineBottom,
+                            //   width: 1.0,
+                            // ),
                           boxShadow: [
                             BoxShadow(
-                              offset: Offset(0.5, 0.5),
-                              color: AppColors.textFilledColor,
-                              spreadRadius: -0.5,
+                              offset: Offset(0, 3),
+                              color: Colors.grey.withOpacity(0.3),
+                              spreadRadius: 2,
                               blurRadius: 5.0
                             )
                           ]
@@ -233,13 +237,20 @@ class CustomerView extends GetView<CustomerController> {
                                         width: 23.sp,
                                       ),
                                       SizedBox(width: 6.0,),
-                                      Text(
-                                        "CUSTOMER ID  #${controller.customersLists[index]['id']}",
-                                        style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w600, fontSize: 16.sp),
+                                      ShaderMask(
+                                        blendMode: BlendMode.srcIn,
+                                        shaderCallback: (bounds) => LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                          colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                                        ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                                        child: Text(
+                                          "CUSTOMER ID  #${controller.customersLists[index]['id']}",
+                                          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w600, fontSize: 16.sp),
+                                        ),
                                       ),
                                     ],
                                   ),
-
                                   Row(
                                     children: [
                                       IconButton(
@@ -339,11 +350,11 @@ class CustomerView extends GetView<CustomerController> {
                                     children: [
                                       Text(
                                         "Name: ",
-                                        style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                        style: TextStyle(color: AppColors.textAndOutlineTop, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                       ),
                                       Text(
                                         controller.customersLists[index]['name'].toString(),
-                                        style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                        style: TextStyle(color: AppColors.textAndOutlineColor, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                       ),
                                     ],
                                   ),
@@ -354,11 +365,11 @@ class CustomerView extends GetView<CustomerController> {
                                     children: [
                                       Text(
                                         "Address: ",
-                                        style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                        style: TextStyle(color: AppColors.textAndOutlineTop, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                       ),
                                       Text(
                                         controller.customersLists[index]['address'] ?? "NA",
-                                        style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                        style: TextStyle(color: AppColors.textAndOutlineColor, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                       ),
                                     ],
                                   ),
@@ -369,11 +380,11 @@ class CustomerView extends GetView<CustomerController> {
                                     children: [
                                       Text(
                                         "ABN: ",
-                                        style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                        style: TextStyle(color: AppColors.textAndOutlineTop, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                       ),
                                       Text(
                                         controller.customersLists[index]['abn'].toString(),
-                                        style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                        style: TextStyle(color: AppColors.textAndOutlineColor, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                       ),
                                     ],
                                   ),
@@ -384,11 +395,11 @@ class CustomerView extends GetView<CustomerController> {
                                     children: [
                                       Text(
                                         "ACN: ",
-                                        style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                        style: TextStyle(color: AppColors.textAndOutlineTop, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                       ),
                                       Text(
                                         controller.customersLists[index]['acn'] != "" ? controller.customersLists[index]['acn'] : "NA",
-                                        style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                        style: TextStyle(color: AppColors.textAndOutlineColor, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                       ),
                                     ],
                                   ),
@@ -400,11 +411,11 @@ class CustomerView extends GetView<CustomerController> {
                                     children: [
                                       Text(
                                         "Created: ",
-                                        style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                        style: TextStyle(color: AppColors.textAndOutlineTop, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                       ),
                                       Text(
                                         controller.reformattedTime(controller.customersLists[index]['created_at'].toString()),
-                                        style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                        style: TextStyle(color: AppColors.textAndOutlineColor, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                       ),
                                     ],
                                   ),
@@ -419,7 +430,7 @@ class CustomerView extends GetView<CustomerController> {
             : Center(
                 child: Text(
                   "No Customer found.",
-                  style: TextStyle(fontSize: 16.sp),
+                  style: TextStyle(fontSize: 16.sp, color: AppColors.textAndOutlineTop),
                 ),
               ),
       ),

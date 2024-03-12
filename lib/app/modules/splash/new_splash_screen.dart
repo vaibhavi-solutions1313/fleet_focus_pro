@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 
 import '../../../constant.dart';
 import 'controllers/splash_controller.dart';
-class NewSplashScreen extends GetView<SplashController>{
-  const NewSplashScreen({super.key});
+class OnboardingIntroScreen extends GetView<SplashController>{
+  const OnboardingIntroScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +17,9 @@ class NewSplashScreen extends GetView<SplashController>{
             child: Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.vertical(bottom: Radius.circular(100.0)),
-                gradient: LinearGradient(colors: [AppColors.appPrimaryColor,AppColors.appPrimaryLightColor],begin: Alignment.center)
+                gradient: LinearGradient(colors: [AppColors.splashLight,AppColors.splashDark],begin: Alignment.center)
               ),
-              child: Image.asset('assets/staffin_logo.png',width: Get.width/3,),
+              child: Image.asset('assets/fleet_focus_logo.png',width: Get.width/3,),
             ),
           ),
           TextButton(onPressed: (){

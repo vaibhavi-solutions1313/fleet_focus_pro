@@ -27,30 +27,51 @@ class SelectImageButton extends StatelessWidget {
         decoration: BoxDecoration(
             color: AppColors.whiteColor,
             borderRadius: BorderRadius.circular(10.0),
+            shape: BoxShape.rectangle,
+            border: Border.all(
+              width: 1.0,
+              color: Colors.transparent
+            ),
             boxShadow: [
               BoxShadow(
                   offset: Offset(0.5, 0.5),
                   spreadRadius: 0.8,
-                  blurRadius: 2,
-                  color: Colors.grey.shade200
-              )
+                  blurRadius: 0,
+                  color: AppColors.textAndOutlineTop.withOpacity(0.5)
+              ),BoxShadow(
+                  offset: Offset(-0.5, -0.5),
+                  spreadRadius: 0.8,
+                  blurRadius: 0,
+                  color: AppColors.textAndOutlineBottom.withOpacity(0.5)
+              ),
             ]
         ),
         child: Padding(
           padding: EdgeInsets.symmetric( horizontal: 18.0.sp,vertical: 15.sp),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                title ?? label,
-                style: GoogleFonts.lato(fontSize: 16.sp, color: Colors.black.withOpacity(0.54), fontWeight: FontWeight.w500),
+              ShaderMask(
+                blendMode: BlendMode.srcIn,
+                shaderCallback: (bounds) => LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                child: Text(
+                  title ?? label,
+                  style: GoogleFonts.lato(fontSize: 16.sp,
+                      color: Colors.black.withOpacity(0.54),
+                      fontWeight: FontWeight.w500),
+                ),
               ),
               if (isSelected == true)
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.0.sp),
                   child: Icon(
                     Icons.check,
-                    color: Colors.green,
-                    size: 16.sp,
+                    color: Color(0xFF03B20D),
+                    size: 20.sp,
                   ),
                 )
             ],

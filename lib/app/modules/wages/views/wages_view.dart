@@ -40,7 +40,7 @@ class WagesView extends GetView<WagesController> {
               },
               icon: const Icon(
                 Icons.date_range,
-                color: Colors.black54,
+                color: AppColors.textAndOutlineColor,
               ),
             ),
           ),
@@ -57,7 +57,7 @@ class WagesView extends GetView<WagesController> {
               },
               icon: const Icon(
                 Icons.date_range,
-                color: Colors.black54,
+                color: AppColors.textAndOutlineColor,
               ),
             ),
           ),

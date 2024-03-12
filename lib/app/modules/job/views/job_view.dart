@@ -14,7 +14,10 @@ class JobView extends GetView<JobController> {
       appBar: AppBar(
         backgroundColor: OurColors.cardBG,
         centerTitle: false,
-        iconTheme: const IconThemeData(color: Colors.blue),
+        iconTheme: const IconThemeData(color: Colors.black54),
+        leading: IconButton(onPressed: () {
+          Get.back();
+        }, icon: Icon(Icons.arrow_back_ios_new)),
         title: Text(
           "Job List",
           style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600, color: Colors.black),
@@ -43,46 +46,78 @@ class JobView extends GetView<JobController> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  Text(
-                                    "REGO",
-                                    style: TextStyle(color: OurColor.highlightBG, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                  ShaderMask(
+                                    blendMode: BlendMode.srcIn,
+                                    shaderCallback: (bounds) => LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                                    ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                                    child: Text(
+                                      "REGO",
+                                      style: TextStyle(color: OurColor.highlightBG, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                    ),
                                   ),
                                   Text(
                                     controller.getAllJobsList[index]['rego'].toString(),
-                                    style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                    style: TextStyle(color: AppColors.textAndOutlineColor, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                   ),
                                   SizedBox(
                                     height: 10.sp,
                                   ),
-                                  Text(
-                                    "Company",
-                                    style: TextStyle(color: OurColor.highlightBG, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                  ShaderMask(
+                                    blendMode: BlendMode.srcIn,
+                                    shaderCallback: (bounds) => LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                                    ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                                    child: Text(
+                                      "Company",
+                                      style: TextStyle(color: OurColor.highlightBG, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                    ),
                                   ),
                                   Text(
                                     controller.getAllJobsList[index]['company'].toString(),
-                                    style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                    style: TextStyle(color: AppColors.textAndOutlineColor, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                   ),
                                   SizedBox(
                                     height: 10.sp,
                                   ),
-                                  Text(
-                                    "Salary",
-                                    style: TextStyle(color: OurColor.highlightBG, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                  ShaderMask(
+                                    blendMode: BlendMode.srcIn,
+                                    shaderCallback: (bounds) => LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                                    ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                                    child: Text(
+                                      "Salary",
+                                      style: TextStyle(color: OurColor.highlightBG, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                    ),
                                   ),
                                   Text(
                                     '\$${controller.getAllJobsList[index]['amount'] ?? "0"}',
-                                    style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                    style: TextStyle(color: AppColors.textAndOutlineColor, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                   ),
                                   SizedBox(
                                     height: 10.sp,
                                   ),
-                                  Text(
-                                    "Working Hours",
-                                    style: TextStyle(color: OurColor.highlightBG, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                  ShaderMask(
+                                    blendMode: BlendMode.srcIn,
+                                    shaderCallback: (bounds) => LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                                    ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                                    child: Text(
+                                      "Working Hours",
+                                      style: TextStyle(color: OurColor.highlightBG, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                    ),
                                   ),
                                   Text(
                                     (controller.getAllJobsList[index]['working_hours'] ?? "NA").toString(),
-                                    style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                    style: TextStyle(color: AppColors.textAndOutlineColor, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                   ),
                                 ],
                               ),
@@ -92,44 +127,76 @@ class JobView extends GetView<JobController> {
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   if (controller.getAllJobsList[index]['vehicle_type'] != null)
-                                    Text(
-                                      "Vehicle Type",
-                                      style: TextStyle(color: OurColor.highlightBG, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                    ShaderMask(
+                                      blendMode: BlendMode.srcIn,
+                                      shaderCallback: (bounds) => LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                                      ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                                      child: Text(
+                                        "Vehicle Type",
+                                        style: TextStyle(color: OurColor.highlightBG, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                      ),
                                     ),
                                   if (controller.getAllJobsList[index]['vehicle_type'] != null)
                                     Text(
                                       controller.getAllJobsList[index]['vehicle_type'],
-                                      style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                      style: TextStyle(color:AppColors.textAndOutlineColor, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                     ),
                                   if (controller.getAllJobsList[index]['vehicle_type'] != null)
                                     SizedBox(
                                       height: 10.sp,
                                     ),
-                                  Text(
-                                    "Odometer Value",
-                                    style: TextStyle(color: OurColor.highlightBG, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                  ShaderMask(
+                                    blendMode: BlendMode.srcIn,
+                                    shaderCallback: (bounds) => LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                                    ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                                    child: Text(
+                                      "Odometer Value",
+                                      style: TextStyle(color: OurColor.highlightBG, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                    ),
                                   ),
                                   Text(
                                     controller.getAllJobsList[index]['odometer_value'].toString(),
-                                    style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                    style: TextStyle(color: AppColors.textAndOutlineColor, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                   ),
                                   SizedBox(
                                     height: 10.sp,
                                   ),
-                                  Text(
-                                    "Service Due",
-                                    style: TextStyle(color: OurColor.highlightBG, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                  ShaderMask(
+                                    blendMode: BlendMode.srcIn,
+                                    shaderCallback: (bounds) => LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                                    ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                                    child: Text(
+                                      "Service Due",
+                                      style: TextStyle(color: OurColor.highlightBG, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                    ),
                                   ),
                                   Text(
                                     controller.getAllJobsList[index]['service_due'].toString(),
-                                    style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                    style: TextStyle(color: AppColors.textAndOutlineColor, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                   ),
                                   SizedBox(
                                     height: 10.sp,
                                   ),
-                                  Text(
-                                    "Job Status",
-                                    style: TextStyle(color: OurColor.highlightBG, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                  ShaderMask(
+                                    blendMode: BlendMode.srcIn,
+                                    shaderCallback: (bounds) => LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                                    ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                                    child: Text(
+                                      "Job Status",
+                                      style: TextStyle(color: OurColor.highlightBG, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                    ),
                                   ),
                                   Text(
                                     controller.getAllJobsList[index]['is_job_closed'] == 1 ? "Closed" : "Active".toString(),
@@ -277,7 +344,7 @@ class JobView extends GetView<JobController> {
                   Center(
                     child: Text(
                       "No Jobs Found.",
-                      style: TextStyle(color: Colors.black, fontSize: 16.sp, fontWeight: FontWeight.w500),
+                      style: TextStyle(color: AppColors.textAndOutlineTop, fontSize: 16.sp, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ],

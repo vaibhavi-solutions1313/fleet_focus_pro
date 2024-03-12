@@ -291,7 +291,7 @@ class DriverController extends GetxController {
     }
     editedData.addIf(wage.text.isNotEmpty, 'wages', wage.text);
 
-    return await networkHelper.postFormData(Endpoints.editDriver, editedData, files);
+    return await networkHelper.postFormData(Endpoints.editDriverUser, editedData, files);
   }
 
   Future<ApiResponse<dynamic>> registerDriver() async {

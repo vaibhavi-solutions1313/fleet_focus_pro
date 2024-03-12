@@ -32,10 +32,10 @@ class TruckView extends GetView<TruckController> {
               margin: EdgeInsets.symmetric(horizontal: 10.sp),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                gradient: const LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: <Color>[Color(0xFF12ADDD), Color(0xFF14598D)],
+                gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [AppColors.splashDark, AppColors.splashLight],
                 ),
               ),
               child: IconButton(
@@ -194,6 +194,15 @@ class TruckView extends GetView<TruckController> {
                 children: List.generate(
                   controller.vehiclesLists.length,
                   (index) => Card(
+                    color: Colors.white,
+
+                    // shape: RoundedRectangleBorder(
+                    //   borderRadius: BorderRadius.circular(12.sp),
+                    //   side: BorderSide(
+                    //     color: AppColors.textAndOutlineTop,
+                    //     width: 1.0,
+                    //   ),
+                    // ),
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Column(
@@ -209,13 +218,21 @@ class TruckView extends GetView<TruckController> {
                                     width: 25.sp,
                                   ),
                                   SizedBox(width: 4.0,),
-                                  Text(
-                                    "REGO: ",
-                                    style: GoogleFonts.lato(color: AppColors.darkBlackishTextColor, fontWeight: FontWeight.w600, fontSize: 16.sp),
+                                  ShaderMask(
+                                    blendMode: BlendMode.srcIn,
+                                    shaderCallback: (bounds) => LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                                    ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                                    child: Text(
+                                      "REGO: ",
+                                      style: GoogleFonts.lato(color: AppColors.textAndOutlineTop, fontWeight: FontWeight.w600, fontSize: 16.sp),
+                                    ),
                                   ),
                                   Text(
                                     controller.vehiclesLists[index]['rego'].toString(),
-                                    style: GoogleFonts.lato(color: Colors.black.withOpacity(0.65), fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                    style: GoogleFonts.lato(color: AppColors.textAndOutlineBottom, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                   ),
                                 ],
                               ),
@@ -224,39 +241,63 @@ class TruckView extends GetView<TruckController> {
                               ),
                               Row(
                                 children: [
-                                  Text(
-                                    "Service Due: ",
-                                    style: GoogleFonts.lato(color: AppColors.darkBlackishTextColor, fontWeight: FontWeight.w600, fontSize: 16.sp),
+                                  ShaderMask(
+                                    blendMode: BlendMode.srcIn,
+                                    shaderCallback: (bounds) => LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                                    ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                                    child: Text(
+                                      "Service Due: ",
+                                      style: GoogleFonts.lato(color: AppColors.textAndOutlineTop, fontWeight: FontWeight.w600, fontSize: 16.sp),
+                                    ),
                                   ),
                                   Text(
                                     controller.vehiclesLists[index]['service_due'] != null ? controller.vehiclesLists[index]['service_due'].toString() : "NA",
-                                    style: GoogleFonts.lato(color: AppColors.darkBlackishTextColor, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                    style: GoogleFonts.lato(color: AppColors.textAndOutlineBottom, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                   ),
                                 ],
                               ),
                               Row(
                                 children: [
-                                  Text(
-                                    "Odometer Value: ",
-                                    style: GoogleFonts.lato(color: AppColors.darkBlackishTextColor, fontWeight: FontWeight.w600, fontSize: 16.sp),
+                                  ShaderMask(
+                                    blendMode: BlendMode.srcIn,
+                                    shaderCallback: (bounds) => LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                                    ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                                    child: Text(
+                                      "Odometer Value: ",
+                                      style: GoogleFonts.lato(color: AppColors.darkBlackishTextColor, fontWeight: FontWeight.w600, fontSize: 16.sp),
+                                    ),
                                   ),
                                   Text(
                                     controller.vehiclesLists[index]['odometer_value'].toString(),
-                                    style: GoogleFonts.lato(color: AppColors.darkBlackishTextColor, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                    style: GoogleFonts.lato(color: AppColors.textAndOutlineBottom, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                   ),
                                 ],
                               ),
                               Row(
                                 children: [
                                   if (controller.vehiclesLists[index]['vehicle_type_name'] != null)
-                                    Text(
-                                      "Vehicle Type: ",
-                                      style: GoogleFonts.lato(color: AppColors.darkBlackishTextColor, fontWeight: FontWeight.w600, fontSize: 16.sp),
+                                    ShaderMask(
+                                      blendMode: BlendMode.srcIn,
+                                      shaderCallback: (bounds) => LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                                      ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                                      child: Text(
+                                        "Vehicle Type: ",
+                                        style: GoogleFonts.lato(color: AppColors.darkBlackishTextColor, fontWeight: FontWeight.w600, fontSize: 16.sp),
+                                      ),
                                     ),
                                   if (controller.vehiclesLists[index]['vehicle_type_name'] != null)
                                     Text(
                                       controller.vehiclesLists[index]['vehicle_type_name'],
-                                      style: GoogleFonts.lato(color: AppColors.darkBlackishTextColor, fontWeight: FontWeight.w500, fontSize: 16.sp),
+                                      style: GoogleFonts.lato(color: AppColors.textAndOutlineBottom, fontWeight: FontWeight.w500, fontSize: 16.sp),
                                     ),
                                   if (controller.vehiclesLists[index]['vehicle_type_name'] != null)
                                     SizedBox(
@@ -399,7 +440,7 @@ class TruckView extends GetView<TruckController> {
                   Center(
                     child: Text(
                       "No Vehicles found.",
-                      style: TextStyle(color: Colors.black87, fontSize: 16.sp, fontWeight: FontWeight.w600),
+                      style: TextStyle(color: AppColors.textAndOutlineTop, fontSize: 16.sp, fontWeight: FontWeight.w600),
                     ),
                   ),
                   // Image.asset("assets/images/empty.png", repeat: ImageRepeat.repeatX),

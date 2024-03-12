@@ -8,8 +8,11 @@ class RegisterController extends GetxController {
   TextEditingController fullName = TextEditingController();
   TextEditingController companyName = TextEditingController();
   TextEditingController email = TextEditingController();
+  TextEditingController country = TextEditingController();
+  TextEditingController state = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController address = TextEditingController();
+  TextEditingController postalCode = TextEditingController();
   TextEditingController mobileNumber = TextEditingController();
   TextEditingController passwordNumber = TextEditingController();
   var isCheckBox = false.obs;
@@ -37,8 +40,11 @@ class RegisterController extends GetxController {
       'company_name': companyName.text,
       'name': fullName.text,
       'email': email.text,
+      'country': country.text,
+      'state': state.text,
       'password': password.text,
       'address': address.text,
+      'postalcode': postalCode.text,
       'mobile': mobileNumber.text,
     }, []);
   }

@@ -29,9 +29,12 @@ class _OurListStringDropDownState extends State<OurListStringDropDown> {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 8.sp),
       decoration: BoxDecoration(
-          // color: Colors.grey.shade100,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(12.sp),
-          border: Border.all(color: Colors.black26,width: 1.3)
+          border: Border.all(
+              color: AppColors.textAndOutlineBottom,
+              width: 1.0
+          )
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 18.0.sp),
@@ -39,9 +42,21 @@ class _OurListStringDropDownState extends State<OurListStringDropDown> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             DropdownButton<dynamic>(
-              hint: Text(
-                widget.hintText,
-                style: GoogleFonts.urbanist(fontSize: 16.sp, color: Colors.black.withOpacity(0.65),fontWeight: FontWeight.w500),
+              hint: ShaderMask(
+                blendMode: BlendMode.srcIn,
+                shaderCallback: (bounds) => LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                child: Text(
+                  widget.hintText,
+                  style: GoogleFonts.urbanist(
+                      fontSize: 16.sp,
+                      color: Colors.black.withOpacity(0.65),
+                      fontWeight: FontWeight.w500
+                  ),
+                ),
               ),
               value: _selectedItem,
               onChanged: (dynamic newValue) {
@@ -53,11 +68,33 @@ class _OurListStringDropDownState extends State<OurListStringDropDown> {
               underline: const SizedBox(),
               isExpanded: true,
               dropdownColor: OurColor.scaffoldBG,
-              style: GoogleFonts.urbanist(fontSize: 16.sp, color: Colors.black54,fontWeight: FontWeight.w600),
+              style: GoogleFonts.urbanist(
+                  fontSize: 16.sp,
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600),
               items: widget.dropdownItems.map((dynamic item) {
                 return DropdownMenuItem<dynamic>(
                   value: item,
-                  child: Text(item.toString(),style: TextStyle(fontSize: 16.sp, color: Colors.black54),),
+                  child:
+                    ShaderMask(
+                      blendMode: BlendMode.srcIn,
+                        shaderCallback: (bounds) => LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                            colors: [AppColors.textAndOutlineTop, AppColors.textAndOutlineBottom],
+                        ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                      child: Text(
+                        item.toString(),
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  // Text(item.toString(),style: TextStyle(
+                  //     fontSize: 16.sp,
+                  //     color: Colors.black54
+                  // ),),
                 );
               }).toList(),
             ),

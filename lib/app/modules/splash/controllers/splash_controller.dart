@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../../constant.dart';
 import '../../../../helpers/api_helper.dart';
 import '../../../../helpers/helping_methods.dart';
+import '../../../../helpers/services.dart';
 import '../../../../plans_view.dart';
 import '../../../routes/app_pages.dart';
 import '../../client/controllers/client_controller.dart';
@@ -27,19 +28,46 @@ class SplashController extends GetxController {
   var licenseTypesList = [].obs;
   Map termsConditions = {};
 
-  //TODO: Implement SplashController
+  final PageController pageController = PageController();
+  RxInt currentPage = 0.obs;
+
+  // late AnimationController _animationController;
+  // late Animation<double> animation;
+
+  final List<String> imageUrls = [
+    'assets/intro_screen_one.png',
+    'assets/intro_screen_two.png',
+    'assets/intro_screen_three.png'
+  ];
+
+  final List<String> introText = [
+    'Verified Trucks!',
+    'Real Time Tracking!',
+    'Rent A Truck Easily!'
+  ];
   @override
   void onInit() {
     super.onInit();
+    // getTokenBasedData();
+
+    // _animationController = AnimationController(
+    //   vsync: this,
+    //   duration: Duration(seconds: 5),
+    // );
+    //
+    // animation = Tween<double>(begin: 1.0, end: 0.5).animate(_animationController);
+    // _animationController.forward();
   }
 
   @override
   void onReady() {
     super.onReady();
+    getTokenBasedData();
   }
 
   @override
   void onClose() {
+    pageController.dispose();
     super.onClose();
   }
 
@@ -74,6 +102,7 @@ class SplashController extends GetxController {
     });
   }
 
+  var isButtonClicked = false.obs;
   Future getTokenBasedData() async {
     if (box.read(StorageKeys.bearerToken) != null) {
       await getUser().then((value) async {
@@ -95,12 +124,15 @@ class SplashController extends GetxController {
             Get.find<WagesController>().getWages(),
             Get.find<RoasterController>().getRoaster(),
             getLicenseState(),
-            getLicenseTypes()
+            getLicenseTypes(),
+
+            // AppServices().determinePosition(),
           ]);
           if (value.data['isPlanExpireOrNot'] == true) {
             Get.to(const PlansView(), transition: Transition.rightToLeft);
           } else {
             Get.toNamed(Routes.DASHBOARD);
+            // AppServices().determinePosition();
           }
         } else {
           HelpingMethods.showToast("Sorry! You're unauthorized user.");
